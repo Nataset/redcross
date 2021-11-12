@@ -15,7 +15,7 @@ use App\Http\Controllers\MailController;
 */
 
 Route::get(
-    '/',
+    '/{type}/{id}',
     [MailController::class, 'index']
 );
 

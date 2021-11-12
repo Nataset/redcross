@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="text-center mt-5">
-    <img src="https://raw.githubusercontent.com/Nataset/redcross-pic/main/Bird1.jpg" alt="Bird1" class="object-contain h-80 w-full">
+    <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain h-80 w-full">
     <form action="{{ route('send-email') }}" method="post">
         @csrf
         <div>
-            <input class="hidden " type="text" name="img-url" value="https://raw.githubusercontent.com/Nataset/redcross-pic/main/Bird1.jpg">
+            <input class="hidden " type="text" name="img-url" value="{{ $imgUrl }}">
         </div>
         <div>
             <label>email</label>

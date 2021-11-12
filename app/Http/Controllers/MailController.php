@@ -9,9 +9,18 @@ use App\Mail\Postcard;
 
 class MailController extends Controller
 {
-    public function index()
+    public $img_endpoint = 'https://raw.githubusercontent.com/Nataset/redcross-pic/main/';
+
+    public $img_name = [
+        'bird' => array('Bird1.jpg', 'Bird2.jpg', 'Bird3.jpg', 'Bird4.jpg'),
+        'postcard' => array('Postcard1.jpg', 'Postcard2.jpg', 'Postcard3.jpg', 'Postcard4.jpg'),
+        'land' => array('Land1.png', 'Land2.png', 'Land3.png', 'Land4.png')
+    ];
+
+    public function index($type, $id)
     {
-        return view('index');
+        $img_path = $this->img_endpoint . $this->img_name[$type][$id - 1];
+        return view('index', ['imgUrl' => $img_path]);
     }
 
     public function send(Request $req)
