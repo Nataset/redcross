@@ -9,3 +9,9 @@ MAIL_ENCRYPTION=ssl
 MAIL_FROM_ADDRESS={YOU MAIL}
 MAIL_FROM_NAME="${APP_NAME}"
 ```
+# endpoint
+```
+http://localhost:8000/land/(1-4)
+http://localhost:8000/postcard/(1-4)
+http://localhost:8000/bird/(1-4)
+```
