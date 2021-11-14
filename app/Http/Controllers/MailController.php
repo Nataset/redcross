@@ -29,7 +29,9 @@ class MailController extends Controller
             'img-url' => $req->input('img-url'),
             'sender' => $req->input('sender'),
             'body' => $req->input('body'),
-            'toEmail' => $req->input('toEmail')
+            'toEmail' => $req->input('toEmail'),
+            'receiveName' => $req->input('receiveName')
+
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
