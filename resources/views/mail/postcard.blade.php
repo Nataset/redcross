@@ -1,16 +1,15 @@
 @component('mail::message')
-# Introduction
+# ส่งต่อประสบการณ์ความสนุกให้ {{ $details['toEmail'] }}
 
 <body>
-    The body of your message.
-    {{ $details['body'] }}
+    <label style="font-size: 20px;" class="mb-5">{{ $details['body']}}</label>
     <img src="{{ $details['img-url']}}" alt="">
 </body>
 
 @component('mail::button', ['url' => ''])
-Button Text
+เข้าชมนิทรรศการออนไลน์
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+เชิญร่วมสนุกได้ที่งานกาชาดออนไลน์ url RedcrossKUPostcard<br>
+จาก: {{ $details['sender']}}
 @endcomponent

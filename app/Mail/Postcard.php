@@ -30,6 +30,6 @@ class Postcard extends Mailable
      */
     public function build()
     {
-        return $this->subject('TEST Mail')->markdown('mail.postcard');
+        return $this->subject($this->details['sender'] . ' ส่งโปสการ์ดจากงานกาชาดออนไลน์')->markdown('mail.postcard');
     }
 }

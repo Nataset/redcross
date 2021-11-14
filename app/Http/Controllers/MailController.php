@@ -27,10 +27,12 @@ class MailController extends Controller
     {
         $details = [
             'img-url' => $req->input('img-url'),
-            'body' => $req->input('body')
+            'sender' => $req->input('sender'),
+            'body' => $req->input('body'),
+            'toEmail' => $req->input('toEmail')
         ];
 
-        Mail::to($req->input('email'))->send(new Postcard($details));
+        Mail::to($req->input('toEmail'))->send(new Postcard($details));
         return "Email Send";
     }
 }
