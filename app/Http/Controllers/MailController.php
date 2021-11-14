@@ -27,7 +27,7 @@ class MailController extends Controller
     {
         $details = [
             'img-url' => $req->input('img-url'),
-            'sender' => $req->input('sender'),
+            'senderName' => $req->input('senderName'),
             'body' => $req->input('body'),
             'toEmail' => $req->input('toEmail'),
             'receiveName' => $req->input('receiveName')

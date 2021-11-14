@@ -11,5 +11,5 @@
 @endcomponent
 
 เชิญร่วมสนุกได้ที่งานกาชาดออนไลน์ url RedcrossKUPostcard<br>
-จาก: {{ $details['sender']}}
+จาก: {{ $details['senderName']}}
 @endcomponent

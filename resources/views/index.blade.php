@@ -22,7 +22,7 @@
                 </div>
                 <hr>
                 <div class="mb-2" id="" onclick="">
-                    <input class="w-full text-xl pl-3 " type="text" name="sender" placeholder="ผู้ส่ง" autocomplete="off">
+                    <input class="w-full text-xl pl-3 " type="text" name="senderName" placeholder="ผู้ส่ง" autocomplete="off">
                 </div>
                 <div class="hidden mb-2" id="sendDiv" onclick="">
                     <table>
