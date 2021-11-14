@@ -1,15 +1,15 @@
 @component('mail::message')
-# ส่งต่อประสบการณ์ความสนุกให้ {{ $details['receiveName'] }}
+# {{ $details['senderName'] }} ส่งต่อประสบการณ์ความสนุกให้ {{ $details['receiveName'] }}
 
 <body>
-    <label style="font-size: 20px;" class="mb-5">{{ $details['body']}}</label>
-    <img src="{{ $details['img-url']}}" alt="">
+    <div style="font-size: 20px;">{{ $details['body']}}</div>
+    <img src="{{ $details['img-url']}}">
 </body>
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => 'https://www.redcrossfair.com/'])
 เข้าชมนิทรรศการออนไลน์
 @endcomponent
 
-เชิญร่วมสนุกได้ที่งานกาชาดออนไลน์ url RedcrossKUPostcard<br>
+ขอเชิญร่วมสนุกได้ที่งานกาชาดออนไลน์ <a href="https://twitter.com/hashtag/RedcrossKUPostcard" style="text-decoration: none;">#RedcrossKUPostcard</a><br>
 จาก: {{ $details['senderName']}}
 @endcomponent

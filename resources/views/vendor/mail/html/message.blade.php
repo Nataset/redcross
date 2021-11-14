@@ -1,8 +1,8 @@
 @component('mail::layout')
 {{-- Header --}}
 @slot('header')
-@component('mail::header', ['url' => config('app.url')])
-{{ config('app.name') }}
+@component('mail::header', ['url' => 'https://www.redcrossfair.com/'])
+<img src="https://raw.githubusercontent.com/Nataset/redcross-pic/main/logo.png">
 @endcomponent
 @endslot
 
