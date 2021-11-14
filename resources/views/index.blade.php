@@ -16,7 +16,7 @@
             @csrf
             <div class="" >
                 <div>
-                    <input class="hidden " type="text" name="img-url" value="{{ $imgUrl }}">
+                    <input class="hidden  " type="text" name="img-url" value="{{ $imgUrl }}">
                 </div>
                 <hr>
                 <div class="mb-2" id="" onclick="">
@@ -40,11 +40,11 @@
                         </tbody>
                     </table>
                 </div>
-                <div class=" mb-2" id="first" onclick="showSendDiv()">
-                    <input  class="w-full text-xl  pl-3" type="text" name="email" placeholder="ผู้รับ" autocomplete="off">
+                <div class="mb-2" id="first" onclick="showSendDiv()">
+                    <input  class="w-full text-xl  pl-3" type="text" placeholder="ผู้รับ" autocomplete="off">
                 </div>
                 <hr>
-                <div class="" id="" onclick="">
+                <div id="" onclick="">
                     <input  class="w-full text-xl   pl-3" type="text" name="subject" placeholder="เรื่อง" autocomplete="off">
                 </div>
                 <hr>
@@ -63,18 +63,24 @@
 
             </div>
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sent</button>
+            <div id="tweet-button">
+                <a rel="canonical" href="https://twitter.com/intent/tweet" class="twitter-share-button" data-show-count="false"data-size="large"
+                data-via="KUredcross"
+                data-text="post card">Tweet</a>
+
+            </div>
+
         </form>
         </div>
     </div>
 
-
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
 
 function showSendDiv() {
   document.getElementById('sendDiv').style.display = "block";
   document.getElementById('toEmail').focus();
   document.getElementById('first').style.display = "none";
-//   document.getElementById('cover').style.display = "static";
 }
 
 function showDiv() {
@@ -92,6 +98,10 @@ function inputSize(){
     document.getElementById("content_size").innerHTML = inputSize.length + "/100";
 
 }
+
+
+    document.getElementById("tweet-button").innerHTML = '<a rel="canonical" href="https://twitter.com/intent/tweet" class="twitter-share-button" data-size="large" data-via="KUredcross " data-show-count="false" data-url="http://6749-1-46-138-111.ngrok.io/bird/2" data-text="test text" >Tweet</a>'
+    twttr.widgets.load()
 </script>
 @endsection
 
