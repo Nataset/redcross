@@ -35,7 +35,7 @@
                                 </td>
                                 <td class="w-full">
                                     <div class="">
-                                        <input id="toEmail" class="w-full pl-2" type="text" onblur="showDiv()">
+                                        <input id="toEmail" class="w-full pl-2" type="text" name="toEmail" onblur="showDiv()">
                                     </div>
                                 </td>
                             </tr>
@@ -43,7 +43,7 @@
                     </table>
                 </div>
                 <div class="mb-2" id="first" onclick="showSendDiv()">
-                    <input class="w-full text-xl  pl-3" type="text" placeholder="ผู้รับ" autocomplete="off" name="toEmail">
+                    <input class="w-full text-xl  pl-3" type="text" placeholder="ผู้รับ" autocomplete="off">
                 </div>
                 <hr>
                 <div id="" onclick="">
