@@ -11,15 +11,18 @@
                     <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain mx-auto max-w-full shadow-lg"
                         style="max-height: 500px">
                 </div>
-                <div>
-                    <button v-on:click="showMailContent()">email</button>
-                    <button v-on:click="showTwitterContent()">twiiter</button>
-
+                <div class="text-center text-2xl my-4">
+                    <div>
+                        Share via
+                    </div>
+                    <button v-on:click="showMailContent()">Email</button>
+                    <span> | </span>
+                    <button v-on:click="showTwitterContent()">Twiiter</button>
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
                     <div
-                        class="border-r-4 border-b-4 border-l-4 bg-gray-100 border-gray-300 px-4 py-6 text-md md:text-xl space-y-3">
+                        class="border-r-4 border-b-4 border-l-4 bg-gray-100 border-gray-300 px-4 py-6 text-md md:text-xl mx-2 space-y-3">
                         <div>
                             <input class="hidden  " type="text" name="img-url" value="{{ $imgUrl }}">
                         </div>
@@ -77,8 +80,9 @@
                         <hr v-if="mail">
                         <div class="relative space-y-3">
                             <label for="content">เนื้อหา</label>
-                            <textarea id="card_content" name="body" v-model="message" class=" w-full relative text-xl block pl-3"
-                                maxlength="90" autocomplete="off" onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
+                            <textarea id="card_content" name="body" v-model="message"
+                                class=" w-full relative text-xl block pl-3 py-3" maxlength="90" autocomplete="off"
+                                onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
                             <div id="content_size" class="absolute right-0">
                                 0/90
                             </div>
@@ -93,8 +97,11 @@
                             <button type="submit"
                                 class="bg-blue-500 mt-8 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">ส่งโปสการ์ด</button>
                         </div>
-                        <div class="text-right" id="tweet-button">
-                            <a :href="tweetUrl">Share via Tweet</a>
+                        <div class="text-right">
+                            <a rel="canonical" href="https://twitter.com/intent/tweet" data-show-count="false"
+                                data-size="large" data-via="KUredcross" data-text="post card">Share
+                                via
+                                Twitter</a>
                         </div>
                     </div>
                 </form>
@@ -113,8 +120,8 @@
                 message: "",
                 tweetUrl: "https://twitter.com/intent/tweet?text=%23redcrosskupostcard",
                 tweetImg: twurl,
-                tweet : false,
-                mail : true,
+                tweet: false,
+                mail: true,
             },
             watch: {
                 message: function(val) {
@@ -122,21 +129,22 @@
                         `https://twitter.com/intent/tweet?text=${val} ${this.tweetImg} %23redcrosskupostcard`
                 }
             },
-            methods:{
-                showTwitterContent: function(){
+            methods: {
+                showTwitterContent: function() {
                     this.tweet = true;
                     this.mail = false;
                     console.log(this.mail);
                     console.log(this.tweet);
 
                 },
-                showMailContent: function(){
+                showMailContent: function() {
                     this.mail = true;
                     this.tweet = false;
 
                 }
             }
         })
+
         function showSendDiv() {
             document.getElementById('sendDiv').style.display = "block";
             document.getElementById('toEmail').focus();
