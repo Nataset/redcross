@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class=" mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
+    <div id="app" class=" mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
         <div class="z-10 " id="cover" onfocus="">
             <h1 class="bg-black text-white text-5xl py-4 pl-3 w-full">
                 โปสการ์ด
@@ -72,7 +72,7 @@
                         <hr>
                         <div class="relative space-y-3">
                             <label for="content">เนื้อหา</label>
-                            <textarea id="card_content" name="body" class=" w-full relative text-xl block pl-3"
+                            <textarea id="card_content" name="body" v-model="message" class=" w-full relative text-xl block pl-3"
                                 maxlength="90" autocomplete="off" onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
                             <div id="content_size" class="absolute right-0">
                                 0/90
@@ -88,11 +88,8 @@
                             <button type="submit"
                                 class="bg-blue-500 mt-8 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">ส่งโปสการ์ด</button>
                         </div>
-                        <div class="text-right">
-                            <a rel="canonical" href="https://twitter.com/intent/tweet" data-show-count="false"
-                                data-size="large" data-via="KUredcross" data-text="post card">Share
-                                via
-                                Twitter</a>
+                        <div class="text-right" id="tweet-button">
+                            <a :href="tweetUrl">Share via Tweet</a>
                         </div>
                     </div>
                 </form>
@@ -100,8 +97,25 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
+        var twurl = "{{ $twitterUrl }}"
+        console.log(twurl);
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: "",
+                tweetUrl: "https://twitter.com/intent/tweet?text=%23redcrosskupostcard",
+                tweetImg: twurl
+            },
+            watch: {
+                message: function(val) {
+                    this.tweetUrl =
+                        `https://twitter.com/intent/tweet?text=${val} ${this.tweetImg} %23redcrosskupostcard`
+                }
+            }
+        })
         function showSendDiv() {
             document.getElementById('sendDiv').style.display = "block";
             document.getElementById('toEmail').focus();
@@ -120,8 +134,6 @@
             let inputSize = document.getElementById("card_content").value;
             document.getElementById("content_size").innerHTML = inputSize.length + "/90";
         }
-        document.getElementById("tweet-button").innerHTML =
-            '<a rel="canonical" href="https://twitter.com/intent/tweet" class="twitter-share-button" data-size="large" data-via="KUredcross " data-show-count="false" data-url="http://6749-1-46-138-111.ngrok.io/bird/2" data-text="test text" >Tweet</a>'
         twttr.widgets.load()
     </script>
 
