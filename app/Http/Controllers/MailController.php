@@ -30,7 +30,7 @@ class MailController extends Controller
     public function index($type, $id)
     {
         $img_path = $this->img_endpoint . $this->img_name[$type][$id - 1];
-        $img_twitter_path = $this->img_twitter_endpoint . $this->img_twitter[$type][$id-1];
+        $img_twitter_path = $this->img_twitter_endpoint . $this->img_twitter[$type][$id - 1];
         return view('index', [
             'imgUrl' => $img_path,
             'twitterUrl' => $img_twitter_path
@@ -70,7 +70,7 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
-        Log::info("Sender : " . $details['senderName'] . "send email to" . $details['toEmail']);
+        Log::info("Sender : " . $details['senderName'] . " , send email to : " . $details['toEmail'] . ", content : " . $details['body']);
         return view('finish', [
             'toEmail' => $details['toEmail'],
             'receiveName' => $details['receiveName']
