@@ -5,7 +5,7 @@
 
 
 
-    <div class=" mt-5 border-4 border-light-blue-500 border-opacity-50 w-1/2 mx-auto">
+    <div id="app" class=" mt-5 border-4 border-light-blue-500 border-opacity-50 w-1/2 mx-auto">
         <div class="z-10 " id="cover" onfocus="">
 
             <div class="bg-black text-white pl-3">
@@ -42,7 +42,8 @@
                                     <td class="w-full">
                                         <div class="">
 
-                                            <input id="toEmail" class="w-full pl-2" type="text" name="toEmail" onblur="showDiv()">
+                                            <input id="toEmail" class="w-full pl-2" type="text" name="toEmail"
+                                                onblur="showDiv()">
                                         </div>
                                     </td>
                                 </tr>
@@ -50,9 +51,8 @@
                         </table>
                     </div>
                     <div class="mb-2" id="first" onclick="showSendDiv()">
-                        <input class="w-full text-xl  pl-3" type="text" placeholder="ผู้รับ" autocomplete="off"
-                            >
-                            @error('toEmail')
+                        <input class="w-full text-xl  pl-3" type="text" placeholder="ผู้รับ" autocomplete="off">
+                        @error('toEmail')
                             <div>
                                 <span class="text-red-600">{{ $message }}</span>
                             </div>
@@ -62,7 +62,7 @@
                     <div>
                         <input class="w-full text-xl   pl-3" type="text" name="receiveName" placeholder="ชื่อผู้รับ"
                             autocomplete="off">
-                            @error('receiveName')
+                        @error('receiveName')
                             <div>
                                 <span class="text-red-600">{{ $message }}</span>
                             </div>
@@ -70,8 +70,9 @@
                     </div>
                     <hr>
                     <div class="relative">
-                        <textarea id="card_content" name="body" class=" w-full relative text-xl block pl-3" maxlength="100"
-                            autocomplete="off" onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
+                        <textarea v-model="message" id="card_content" name="body"
+                            class=" w-full relative text-xl block pl-3" maxlength="100" autocomplete="off"
+                            onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
                         <div id="content_size" class="absolute right-0">
                             0/100
                         </div>
@@ -85,18 +86,36 @@
                 </div>
                 <button type="submit"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sent</button>
-                <div id="tweet-button">
-                    <a rel="canonical" href="https://twitter.com/intent/tweet" class="twitter-share-button"
-                        data-show-count="false" data-size="large" data-via="KUredcross" data-text="post card">Tweet</a>
 
+                <div id="tweet-button">
+                    <a :href="tweetUrl">Share via Tweet</a>
                 </div>
+
 
             </form>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script>
+        var twurl = "{{ $twitterUrl }}"
+        console.log(twurl);
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: "",
+                tweetUrl: "https://twitter.com/intent/tweet?text=%23redcrosskupostcard",
+                tweetImg: twurl
+            },
+            watch: {
+                message: function(val) {
+                    this.tweetUrl =
+                        `https://twitter.com/intent/tweet?text=${val} ${this.tweetImg} %23redcrosskupostcard`
+                }
+            }
+        })
+
         function showSendDiv() {
             document.getElementById('sendDiv').style.display = "block";
             document.getElementById('toEmail').focus();
@@ -115,8 +134,7 @@
             let inputSize = document.getElementById("card_content").value;
             document.getElementById("content_size").innerHTML = inputSize.length + "/100";
         }
-        document.getElementById("tweet-button").innerHTML =
-            '<a rel="canonical" href="https://twitter.com/intent/tweet" class="twitter-share-button" data-size="large" data-via="KUredcross " data-show-count="false" data-url="http://6749-1-46-138-111.ngrok.io/bird/2" data-text="test text" >Tweet</a>'
+
         twttr.widgets.load()
     </script>
 @endsection
