@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MainRequest;
 use App\Mail\Postcard;
+use Illuminate\Support\Facades\Validator;
 
 class MailController extends Controller
 {
@@ -25,6 +27,27 @@ class MailController extends Controller
 
     public function send(Request $req)
     {
+
+        $validator = Validator::make(
+            $req->all(),
+            [
+                'img-url' => 'required',
+                'senderName' => 'required',
+                'body' => 'required',
+                'toEmail' => 'required|email',
+                'receiveName' => 'required'
+            ],
+            [
+                'img-url.required' => 'กรุณาเลือกรูปภาพ',
+                'senderName.required' => 'กรุณากรอกชื่อของคุณ',
+                'body.required' => 'กรุณากรอกคำอวยพร',
+                'toEmail.required' => 'กรุณากรอกอีเมล',
+                'toEmail.email' => 'รูปแบบอีเมลให้ถูกต้อง',
+                'receiveName.required' => 'กรุณากรอกชื่อผู้รับ',
+            ]
+        );
+        $validator->validated();
+
         $details = [
             'img-url' => $req->input('img-url'),
             'toEmail' => $req->input('toEmail'),
