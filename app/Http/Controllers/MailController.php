@@ -11,18 +11,28 @@ use Illuminate\Support\Facades\Validator;
 
 class MailController extends Controller
 {
-    public $img_endpoint = 'https://raw.githubusercontent.com/Nataset/redcross-pic/main/';
+    private $img_endpoint = 'https://raw.githubusercontent.com/Nataset/redcross-pic/main/';
+    private $img_twitter_endpoint = 'pic.twitter.com/';
 
-    public $img_name = [
+    private $img_name = [
         'bird' => array('Bird1.jpg', 'Bird2.jpg', 'Bird3.jpg', 'Bird4.jpg'),
         'postcard' => array('Postcard1.jpg', 'Postcard2.jpg', 'Postcard3.jpg', 'Postcard4.jpg'),
         'land' => array('Land1.png', 'Land2.png', 'Land3.png', 'Land4.png')
+    ];
+    private $img_twitter = [
+        'bird' => array('t9DW5obXND', 'Y9DZRn9PZf', 'FLScXk4hIO', 'KONZ6bEZDd'),
+        'postcard' => array('Postcard1.jpg', '7QJq1i7Ght', '46a4WkdJmT', 'H87XiBvF4I'),
+        'land' => array('kZcxIW3GWe', 'BixiZBGw6L', 'Yz95mwFmr8', 'zxnNG40BwL')
     ];
 
     public function index($type, $id)
     {
         $img_path = $this->img_endpoint . $this->img_name[$type][$id - 1];
-        return view('index', ['imgUrl' => $img_path]);
+        $img_twitter_path = $this->img_twitter_endpoint . $this->img_twitter[$type][$id-1];
+        return view('index', [
+            'imgUrl' => $img_path,
+            'twitterUrl' => $img_twitter_path
+        ]);
     }
 
     public function send(Request $req)
@@ -58,6 +68,10 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
-        return "Email Send to " . $req->input('toEmail');
+        return view('finish', [
+            'toEmail' => $details['toEmail'],
+            'receiveName' => $details['receiveName']
+        ]);
+        // return "Email Send to " . $req->input('toEmail');
     }
 }

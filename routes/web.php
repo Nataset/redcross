@@ -18,5 +18,4 @@ Route::get(
     '/{type}/{id}',
     [MailController::class, 'index']
 );
-
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
