@@ -19,9 +19,10 @@ class MailController extends Controller
         'postcard' => array('Postcard1.jpg', 'Postcard2.jpg', 'Postcard3.jpg', 'Postcard4.jpg'),
         'land' => array('Land1.png', 'Land2.png', 'Land3.png', 'Land4.png')
     ];
+
     private $img_twitter = [
         'bird' => array('t9DW5obXND', 'Y9DZRn9PZf', 'FLScXk4hIO', 'KONZ6bEZDd'),
-        'postcard' => array('Postcard1.jpg', '7QJq1i7Ght', '46a4WkdJmT', 'H87XiBvF4I'),
+        'postcard' => array('LAqKLmv84s', '7QJq1i7Ght', '46a4WkdJmT', 'H87XiBvF4I'),
         'land' => array('kZcxIW3GWe', 'BixiZBGw6L', 'Yz95mwFmr8', 'zxnNG40BwL')
     ];
 

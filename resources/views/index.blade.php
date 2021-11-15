@@ -71,10 +71,10 @@
                     <hr>
                     <div class="relative">
                         <textarea v-model="message" id="card_content" name="body"
-                            class=" w-full relative text-xl block pl-3" maxlength="100" autocomplete="off"
+                            class=" w-full relative text-xl block pl-3" maxlength="90" autocomplete="off"
                             onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
                         <div id="content_size" class="absolute right-0">
-                            0/100
+                            0/90
                         </div>
                         @error('body')
                             <div>
@@ -132,7 +132,7 @@
 
         function inputSize() {
             let inputSize = document.getElementById("card_content").value;
-            document.getElementById("content_size").innerHTML = inputSize.length + "/100";
+            document.getElementById("content_size").innerHTML = inputSize.length + "/90";
         }
 
         twttr.widgets.load()
