@@ -15,6 +15,7 @@
     <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Document</title>
+    @yield('style')
 </head>
 
 
