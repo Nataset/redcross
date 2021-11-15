@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MainRequest;
 use App\Mail\Postcard;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class MailController extends Controller
@@ -69,6 +70,7 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
+        Log::info("Sender : " . $details['senderName'] . "send email to" . $details['toEmail']);
         return view('finish', [
             'toEmail' => $details['toEmail'],
             'receiveName' => $details['receiveName']

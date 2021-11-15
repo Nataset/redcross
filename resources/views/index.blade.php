@@ -7,9 +7,14 @@
                 โปสการ์ด
             </h1>
             <div class="mb-28 ">
-                <div class="bg-gray-100 border-r-4 border-l-4 border-gray-300 pt-8">
+                <div class="bg-gray-100 border-r-4 border-l-4 border-gray-300 py-8">
                     <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain mx-auto max-w-full shadow-lg"
                         style="max-height: 500px">
+                </div>
+                <div>
+                    <button v-on:click="showMailContent()">email</button>
+                    <button v-on:click="showTwitterContent()">twiiter</button>
+
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
@@ -18,8 +23,7 @@
                         <div>
                             <input class="hidden  " type="text" name="img-url" value="{{ $imgUrl }}">
                         </div>
-                        <hr>
-                        <div class="mb-2 space-y-3" id="" onclick="">
+                        <div v-if="mail" class="mb-2 space-y-3" id="" onclick="">
                             <label for="senderName">ชื่อผู้ส่ง</label>
                             <input class="w-full text-xl pl-3 py-2" type="text" name="senderName" placeholder="ผู้ส่ง"
                                 autocomplete="off">
@@ -29,7 +33,8 @@
                                 <span class="text-red-600">{{ $message }}</span>
                             </div>
                         @enderror
-                        <div class="hidden mb-2 space-y-3" id="sendDiv" onclick="">
+                        <hr v-if="mail">
+                        <div v-if="mail" class="hidden mb-2 space-y-3" id="sendDiv" onclick="">
                             <label for="receiverEmail">อีเมลผู้รับ</label>
                             <table>
                                 <tbody>
@@ -49,7 +54,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="mb-2 space-y-3 " id="first" onclick="showSendDiv()">
+                        <div v-if="mail" class="mb-2 space-y-3 " id="first" onclick="showSendDiv()">
                             <label for="receiverEmail">อีเมลผู้รับ</label>
                             <h1 class="bg-gray-50 text-gray-400 px-3 py-2 font-medium text-xl ">ผู้รับ</h1>
                             @error('toEmail')
@@ -58,8 +63,8 @@
                                 </div>
                             @enderror
                         </div>
-                        <hr>
-                        <div class="space-y-3">
+                        <hr v-if="mail">
+                        <div v-if="mail" class="space-y-3">
                             <label for="receiverName">ชื่อผู้รับ</label>
                             <input class="w-full text-xl py-2 pl-3" type="text" name="receiveName" placeholder="ชื่อผู้รับ"
                                 autocomplete="off">
@@ -69,7 +74,7 @@
                                 </div>
                             @enderror
                         </div>
-                        <hr>
+                        <hr v-if="mail">
                         <div class="relative space-y-3">
                             <label for="content">เนื้อหา</label>
                             <textarea id="card_content" name="body" v-model="message" class=" w-full relative text-xl block pl-3"
@@ -107,12 +112,28 @@
             data: {
                 message: "",
                 tweetUrl: "https://twitter.com/intent/tweet?text=%23redcrosskupostcard",
-                tweetImg: twurl
+                tweetImg: twurl,
+                tweet : false,
+                mail : true,
             },
             watch: {
                 message: function(val) {
                     this.tweetUrl =
                         `https://twitter.com/intent/tweet?text=${val} ${this.tweetImg} %23redcrosskupostcard`
+                }
+            },
+            methods:{
+                showTwitterContent: function(){
+                    this.tweet = true;
+                    this.mail = false;
+                    console.log(this.mail);
+                    console.log(this.tweet);
+
+                },
+                showMailContent: function(){
+                    this.mail = true;
+                    this.tweet = false;
+
                 }
             }
         })
