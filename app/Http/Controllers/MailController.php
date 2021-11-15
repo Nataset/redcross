@@ -68,6 +68,10 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
-        return "Email Send to " . $req->input('toEmail');
+        return view('finish', [
+            'toEmail' => $details['toEmail'],
+            'receiveName' => $details['receiveName']
+        ]);
+        // return "Email Send to " . $req->input('toEmail');
     }
 }
