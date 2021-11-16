@@ -7,19 +7,34 @@
                 โปสการ์ด
             </h1>
             <div class="mb-28 ">
-                <div class="bg-gray-100 border-r-4 border-l-4 border-gray-300 py-8">
+                <div class="bg-gray-100  py-8">
                     <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain mx-auto max-w-full shadow-lg"
                         style="max-height: 500px">
                 </div>
-                <div class="text-center text-2xl my-4">
-                    <button v-on:click="showMailContent()" v-bind:class="{ active: tweet,  'border-b-2 border-transparent border-blue-500 p-3': mail }">Email</button>
-                    <span> | </span>
-                    <button v-on:click="showTwitterContent()" v-bind:class="{ active: mail,  'border-b-2 border-transparent border-blue-500 p-3': tweet }">Twitter</button>
+                <div class="text-center text-2xl inline-flex w-full bg-white  border-white ">
+                    <button v-on:click="showMailContent()" class="flex-1 w-1/2 text-center relative z-10"
+                        v-bind:class="{ active: tweet,  ' border-transparent  p-3 w-1/2 bg-blue-500 text-white rounded-tr-2xl': mail }">Email
+                        <div v-if="mail"
+                            class="bg-transparent  rounded-b-2xl  left-full absolute w-1/2  h-1/2 "
+                            style="bottom: 0; box-shadow: -25px 0 0 0 rgba(59, 130, 246, var(--tw-bg-opacity));">
+
+                        </div>
+                    </button>
+
+
+                    <button v-on:click="showTwitterContent()" class="flex-1 w-1/2 text-center relative"
+                        v-bind:class="{ active: mail,  ' border-transparent  p-3 w-1/2  bg-blue-500 text-white rounded-tl-2xl': tweet }">Twitter
+                        <div  v-if="tweet"
+                            class="bg-transparent  rounded-b-2xl  right-full absolute w-1/2  h-1/2 "
+                            style="bottom: 0; box-shadow: 25px 0 0 0 rgba(59, 130, 246, var(--tw-bg-opacity));">
+
+                        </div>
+                    </button>
+
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
-                    <div
-                        class="border-r-4 border-b-4 border-l-4 bg-gray-100 border-gray-300 px-4 py-6 text-md md:text-xl mx-2 space-y-3">
+                    <div class=" border-b-4  bg-gray-100  px-4 py-6 text-md md:text-xl  space-y-3">
                         <div>
                             <input class="hidden  " type="text" name="img-url" value="{{ $imgUrl }}">
                         </div>
@@ -129,15 +144,18 @@
             },
             methods: {
                 showTwitterContent: function() {
-                    this.tweet = true;
-                    this.mail = false;
-                    console.log(this.mail);
-                    console.log(this.tweet);
+                    this.tweet = !this.tweet;
+                    this.mail = !this.mail;
+                    console.log("mail" + this.mail);
+                    console.log("tweet" + this.tweet);
 
                 },
                 showMailContent: function() {
-                    this.mail = true;
-                    this.tweet = false;
+                    this.mail = !this.mail;
+                    this.tweet = !this.tweet;
+                    console.log("-------");
+                    console.log("mail" + this.mail);
+                    console.log("tweet" + this.tweet);
 
                 }
             }
