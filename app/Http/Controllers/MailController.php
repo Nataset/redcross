@@ -16,8 +16,8 @@ class MailController extends Controller
     private $img_twitter_endpoint = 'pic.twitter.com/';
 
     private $img_name = [
-        'bird' => array('Bird1.jpg', 'Bird2.jpg', 'Bird3.jpg', 'Bird4.jpg'),
-        'postcard' => array('Postcard1.jpg', 'Postcard2.jpg', 'Postcard3.jpg', 'Postcard4.jpg'),
+        'bird' => array('Bird1.png', 'Bird2.png', 'Bird3.png', 'Bird4.png'),
+        'postcard' => array('Postcard1.png', 'Postcard2.png', 'Postcard3.png', 'Postcard4.png'),
         'land' => array('Land1.png', 'Land2.png', 'Land3.png', 'Land4.png')
     ];
 

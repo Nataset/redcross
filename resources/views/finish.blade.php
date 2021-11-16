@@ -2,7 +2,7 @@
 
 @section('style')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;600&display=swap');
+
 
     .text-prompt-sm {
         font-family: 'Prompt', sans-serif;
@@ -19,9 +19,9 @@
 
 @section('content')
 <div class="flex justify-center items-center h-screen m-3">
-    <div class="flex justify-center bg-gray-100 border-gray-300 border rounded-lg flex-col p-5 sm:p-10">
+    <div class="flex justify-center bg-yellow-50  border rounded-lg flex-col p-5 sm:p-10 shadow-lg">
         <div class="flex justify-center">
-            <img src="https://raw.githubusercontent.com/Nataset/redcross-pic/main/check_logo.png" class="sm:w-1/2 w-1/3">
+            <img src="https://raw.githubusercontent.com/Nataset/redcross-pic/main/check_logo.png" class="sm:w-1/2 w-1/2">
         </div>
         <div class="flex justify-center mt-3">
             <p class="text-prompt-sm sm:text-xl">คุณได้ส่งต่อประสบการณ์ความสนุกให้ </p>

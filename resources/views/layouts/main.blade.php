@@ -25,8 +25,10 @@
     @yield('javascript')
 </body>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;600&display=swap');
     body {
         margin-top: -20px !important;
+        font-family: 'Prompt', sans-serif;
     }
 
 </style>
