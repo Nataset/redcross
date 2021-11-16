@@ -24,14 +24,14 @@
 
 
             </h1>
-            <div class="mb-28 ">
-                <div class="  py-8">
+            <div class="">
+                <div class="py-8">
                     <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain mx-auto max-w-full shadow-lg"
                         style="max-height: 500px">
                 </div>
-                <div class="pl-8 text-2xl mb-4">
+                <div class="sm:pl-8 px-auto text-lg md:text-2xl mb-4 text-center md:text-left">
                     <span>&#9993;</span>
-                    ร่วมส่งต่อความสนุกผ่านช่องทางต่อไปนี้
+                    <span> ร่วมส่งต่อความสนุกผ่านช่องทางต่อไปนี้ </span>
                 </div>
                 <div class="text-center text-2xl inline-flex w-full bg-white  border-white ">
                     <button v-on:click="showMailContent()" class="flex-1 w-1/2 text-center relative z-10 font-bold"
@@ -39,11 +39,8 @@
                         <div v-on:click="showNewTweet()" v-if="mail"
                             class="bg-transparent  rounded-b-2xl  left-full absolute   h-1/2 "
                             style="width: 50px ;bottom: 0; box-shadow: -25px 0 0 0 rgba(59, 130, 246, var(--tw-bg-opacity));">
-
                         </div>
                     </button>
-
-
                     <button v-on:click="showTwitterContent()" class="flex-1 w-1/2 text-center relative font-bold"
                         v-bind:class="{ active: mail,  ' border-transparent  p-3 w-1/2  bg-blue-500 text-white rounded-tl-2xl': tweet }">Twitter
                         <div v-on:click="showNew()" v-if="tweet"
@@ -52,7 +49,6 @@
 
                         </div>
                     </button>
-
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
