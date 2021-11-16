@@ -12,12 +12,9 @@
                         style="max-height: 500px">
                 </div>
                 <div class="text-center text-2xl my-4">
-                    <div>
-                        Share via
-                    </div>
-                    <button v-on:click="showMailContent()">Email</button>
+                    <button v-on:click="showMailContent()" v-bind:class="{ active: tweet,  'border-b-2 border-transparent border-blue-500 p-3': mail }">Email</button>
                     <span> | </span>
-                    <button v-on:click="showTwitterContent()">Twiiter</button>
+                    <button v-on:click="showTwitterContent()" v-bind:class="{ active: mail,  'border-b-2 border-transparent border-blue-500 p-3': tweet }">Twitter</button>
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
@@ -93,13 +90,14 @@
                             @enderror
                         </div>
 
-                        <div class="text-center ">
+                        <div v-if="mail" class="text-center ">
                             <button type="submit"
                                 class="bg-blue-500 mt-8 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">ส่งโปสการ์ด</button>
                         </div>
-                        <div class="text-right">
+                        <div v-if="tweet" class="text-center mt-8">
                             <a rel="canonical" href="https://twitter.com/intent/tweet" data-show-count="false"
-                                data-size="large" data-via="KUredcross" data-text="post card">Share
+                                data-size="large" data-via="KUredcross" data-text="post card"
+                                class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
                                 via
                                 Twitter</a>
                         </div>
