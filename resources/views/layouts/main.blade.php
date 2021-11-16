@@ -20,7 +20,7 @@
 </head>
 
 
-<body class="container mx-auto min-h-screen bg-gray-300 m-0 p-0">
+<body class="container mx-auto min-h-screen bg-gray-100 m-0 p-0">
     @yield('content')
     @yield('javascript')
 </body>

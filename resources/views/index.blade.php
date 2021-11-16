@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
-    <div id="app" class=" mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
+    <div id="app" class="shadow-lg border-4 bg-white mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
         <div class="z-10 " id="cover" onfocus="">
             <h1 class="bg-black text-white text-5xl py-4 pl-3 w-full">
                 โปสการ์ด
             </h1>
             <div class="mb-28 ">
-                <div class="bg-gray-100  py-8">
+                <div class="  py-8">
                     <img src="{{ $imgUrl }}" alt="Bird1" class="object-contain mx-auto max-w-full shadow-lg"
                         style="max-height: 500px">
                 </div>
@@ -34,13 +34,13 @@
                 </div>
                 <form action="{{ route('send-email') }}" method="post">
                     @csrf
-                    <div class=" border-b-4  bg-gray-100  px-4 py-6 text-md md:text-xl  space-y-3">
+                    <div class=" px-4 py-6 text-md md:text-xl  space-y-3">
                         <div>
                             <input class="hidden  " type="text" name="img-url" value="{{ $imgUrl }}">
                         </div>
                         <div v-if="mail" class="mb-2 space-y-3" id="" onclick="">
                             <label for="senderName">ชื่อผู้ส่ง</label>
-                            <input class="w-full text-xl pl-3 py-2" type="text" name="senderName" placeholder="ผู้ส่ง"
+                            <input class="w-full text-xl pl-3 py-2 bg-gray-100" type="text" name="senderName" placeholder="ผู้ส่ง"
                                 autocomplete="off">
                         </div>
                         @error('senderName')
@@ -81,7 +81,7 @@
                         <hr v-if="mail">
                         <div v-if="mail" class="space-y-3">
                             <label for="receiverName">ชื่อผู้รับ</label>
-                            <input class="w-full text-xl py-2 pl-3" type="text" name="receiveName" placeholder="ชื่อผู้รับ"
+                            <input class="w-full text-xl py-2 pl-3 bg-gray-100" type="text" name="receiveName" placeholder="ชื่อผู้รับ"
                                 autocomplete="off">
                             @error('receiveName')
                                 <div>
@@ -93,7 +93,7 @@
                         <div class="relative space-y-3">
                             <label for="content">เนื้อหา</label>
                             <textarea id="card_content" name="body" v-model="message"
-                                class=" w-full relative text-xl block pl-3 py-3" maxlength="90" autocomplete="off"
+                                class=" w-full relative text-xl block pl-3 py-3 bg-gray-100" maxlength="90" autocomplete="off"
                                 onkeydown="inputSize()" onkeyup="inputSize()"></textarea>
                             <div id="content_size" class="absolute right-0">
                                 0/90
@@ -105,16 +105,18 @@
                             @enderror
                         </div>
 
-                        <div v-if="mail" class="text-center ">
-                            <button type="submit"
+                        <div class="text-center ">
+                            <button type="submit" v-if="mail"
                                 class="bg-blue-500 mt-8 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">ส่งโปสการ์ด</button>
                         </div>
-                        <div v-if="tweet" class="text-center mt-8">
-                            <a rel="canonical" href="https://twitter.com/intent/tweet" data-show-count="false"
-                                data-size="large" data-via="KUredcross" data-text="post card"
-                                class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
-                                via
-                                Twitter</a>
+                        <div v-if="tweet" class="text-center mt-8" :class="tweet ? '' :  'hidden'">
+                            <button class="my-8">
+                                <a v-if="tweet" rel="canonical" href="https://twitter.com/intent/tweet"
+                                    data-show-count="false" data-size="large" data-via="KUredcross" data-text="post card"
+                                    class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
+                                    via
+                                    Twitter</a>
+                            </button>
                         </div>
                     </div>
                 </form>
