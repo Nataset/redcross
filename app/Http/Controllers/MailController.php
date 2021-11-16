@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MainRequest;
 use App\Mail\Postcard;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class MailController extends Controller
@@ -33,13 +34,14 @@ class MailController extends Controller
         $img_twitter_path = $this->img_twitter_endpoint . $this->img_twitter[$type][$id - 1];
         return view('index', [
             'imgUrl' => $img_path,
-            'twitterUrl' => $img_twitter_path
+            'twitterUrl' => $img_twitter_path,
+            //  send image name to index , for send to collect in log system
+            'img_name' => $this->img_name[$type][$id - 1]
         ]);
     }
 
-    public function send(Request $req)
+    public function send(Request $req, $img_name)
     {
-
         $validator = Validator::make(
             $req->all(),
             [
@@ -70,11 +72,15 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
-        Log::info("Sender : " . $details['senderName'] . " , send email to : " . $details['toEmail'] . ", content : " . $details['body']);
+        Log::info("Sender : " . $details['senderName'] . " , send email to : " . $details['toEmail'] . ", content : " . $details['body'] . ", with image : " . $img_name);
         return view('finish', [
             'toEmail' => $details['toEmail'],
             'receiveName' => $details['receiveName']
         ]);
         // return "Email Send to " . $req->input('toEmail');
+    }
+    public function tweet($content, $img_name)
+    {
+        Log::info("tweet content : " . $content . ", with image : " . $img_name);
     }
 }

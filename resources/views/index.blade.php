@@ -1,28 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="fixed w-screen h-screen opacity-75 bg-gray-400 flex flex-col justify-center items-center z-50">
-    <div class=" animate-spin h-12 w-12 rounded-full bg-transparent border-8 border-transparent border-opacity-50 mx-auto opacity-100"
-        style="border-right-color: white; border-top-color: white;" viewBox="0 0 24 24"></div>
+    <div class="fixed w-screen h-screen opacity-75 bg-gray-400 flex flex-col justify-center items-center z-50 hidden">
+        <div class=" animate-spin h-12 w-12 rounded-full bg-transparent border-8 border-transparent border-opacity-50 mx-auto opacity-100"
+            style="border-right-color: white; border-top-color: white;" viewBox="0 0 24 24"></div>
         <span class="text-white animate-bounce">
             Loading...
         </span>
-
-</div>
-    <div id="app" class="shadow-lg border-4 bg-white mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
-
+    </div>
+    <div id="app" class="shadow-lg bg-white mb-10 mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
         <div class=" " id="cover">
-
             <h1 class="bg-gray-800 tracking-widest text-white text-center pt-4 pb-4 pl-3  ">
                 <span class="  sm:text-4xl font-semibold text-2xl ">ส่งความสนุกไปกับโปสการ์ด
                     <div class="absolute text-xl " style="bottom: -1.5rem;right: 0; ">
 
                     </div>
                 </span>
-
-
-
-
             </h1>
             <div class="">
                 <div class="py-8">
@@ -50,7 +43,7 @@
                         </div>
                     </button>
                 </div>
-                <form action="{{ route('send-email') }}" method="post">
+                <form action="{{ route('send-email', ['img_name' => $img_name]) }}" method="post">
                     @csrf
                     <div class=" px-4 py-6 text-md md:text-xl  space-y-3">
                         <div>
@@ -130,14 +123,18 @@
                         </div>
 
                     </div>
+                    {{-- seperate form(tweet and email) to each component or something --}}
                     <div v-if="tweet" class="text-center mt-8" :class="tweet ? '' :  'hidden'">
-                        <button class="my-8">
-                            <a v-if="tweet" rel="canonical" :href="tweetUrl" data-show-count="false" data-size="large"
-                                data-via="KUredcross" data-text="post card"
-                                class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
-                                via
-                                Twitter</a>
-                        </button>
+                        <form action="{{ route('tweet', ['img_name' => $image_name]) }}" method="post">
+                            @csrf
+                            <button class="my-8" type="submit">
+                                <a hidden v-if="tweet" rel="canonical" :href="tweetUrl" data-show-count="false"
+                                    data-size="large" data-via="KUredcross" data-text="post card"
+                                    class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
+                                    via
+                                    Twitter</a>
+                            </button>
+                        </form>
                     </div>
             </div>
             </form>

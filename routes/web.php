@@ -19,3 +19,4 @@ Route::get(
     [MailController::class, 'index']
 );
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
+Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
