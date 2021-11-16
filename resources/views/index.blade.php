@@ -1,10 +1,20 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="fixed w-screen h-screen opacity-75 bg-gray-400 flex flex-col justify-center items-center z-50">
+    <div class=" animate-spin h-12 w-12 rounded-full bg-transparent border-8 border-transparent border-opacity-50 mx-auto opacity-100"
+        style="border-right-color: white; border-top-color: white;" viewBox="0 0 24 24"></div>
+        <span class="text-white animate-bounce">
+            Loading...
+        </span>
+
+</div>
     <div id="app" class="shadow-lg border-4 bg-white mt-5 w-full md:w-5/6 lg:w-3/4 mx-auto">
-        <div class="z-10 " id="cover" onfocus="">
+
+        <div class=" " id="cover">
+
             <h1 class="bg-gray-800 tracking-widest text-white text-center pt-4 pb-4 pl-3  ">
-                <span class=" relative sm:text-4xl font-semibold text-2xl ">ส่งความสนุกไปกับโปสการ์ด
+                <span class="  sm:text-4xl font-semibold text-2xl ">ส่งความสนุกไปกับโปสการ์ด
                     <div class="absolute text-xl " style="bottom: -1.5rem;right: 0; ">
 
                     </div>
@@ -26,7 +36,8 @@
                 <div class="text-center text-2xl inline-flex w-full bg-white  border-white ">
                     <button v-on:click="showMailContent()" class="flex-1 w-1/2 text-center relative z-10 font-bold"
                         v-bind:class="{ active: tweet,  ' border-transparent  p-3 w-1/2 bg-blue-500 text-white rounded-tr-2xl': mail }">Email
-                        <div v-on:click="showNewTweet()" v-if="mail" class="bg-transparent  rounded-b-2xl  left-full absolute   h-1/2 "
+                        <div v-on:click="showNewTweet()" v-if="mail"
+                            class="bg-transparent  rounded-b-2xl  left-full absolute   h-1/2 "
                             style="width: 50px ;bottom: 0; box-shadow: -25px 0 0 0 rgba(59, 130, 246, var(--tw-bg-opacity));">
 
                         </div>
@@ -35,7 +46,8 @@
 
                     <button v-on:click="showTwitterContent()" class="flex-1 w-1/2 text-center relative font-bold"
                         v-bind:class="{ active: mail,  ' border-transparent  p-3 w-1/2  bg-blue-500 text-white rounded-tl-2xl': tweet }">Twitter
-                        <div v-on:click="showNew()" v-if="tweet" class="bg-transparent  rounded-b-2xl  right-full z-0 absolute w-2/12  h-1/2 "
+                        <div v-on:click="showNew()" v-if="tweet"
+                            class="bg-transparent  rounded-b-2xl  right-full z-0 absolute w-2/12  h-1/2 "
                             style="width: 50px; bottom: 0; box-shadow: 25px 0 0 0 rgba(59, 130, 246, var(--tw-bg-opacity));">
 
                         </div>
@@ -120,19 +132,21 @@
                             <button type="submit" v-if="mail"
                                 class="bg-blue-500 mt-8 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">ส่งโปสการ์ด</button>
                         </div>
-                        <div v-if="tweet" class="text-center mt-8" :class="tweet ? '' :  'hidden'">
-                            <button class="my-8">
-                                <a v-if="tweet" rel="canonical" :href="tweetUrl" data-show-count="false" data-size="large"
-                                    data-via="KUredcross" data-text="post card"
-                                    class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
-                                    via
-                                    Twitter</a>
-                            </button>
-                        </div>
+
                     </div>
-                </form>
+                    <div v-if="tweet" class="text-center mt-8" :class="tweet ? '' :  'hidden'">
+                        <button class="my-8">
+                            <a v-if="tweet" rel="canonical" :href="tweetUrl" data-show-count="false" data-size="large"
+                                data-via="KUredcross" data-text="post card"
+                                class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded ">Share
+                                via
+                                Twitter</a>
+                        </button>
+                    </div>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
@@ -162,16 +176,16 @@
             },
             methods: {
                 showTwitterContent: function() {
-                        this.tweet = !this.tweet;
-                        this.mail = !this.mail;
+                    this.tweet = !this.tweet;
+                    this.mail = !this.mail;
                 },
                 showMailContent: function() {
-                        this.mail = !this.mail;
-                        this.tweet = !this.tweet;
+                    this.mail = !this.mail;
+                    this.tweet = !this.tweet;
 
 
                 },
-                showNewTweet: function(){
+                showNewTweet: function() {
                     this.tweet = false;
                     this.mail = true;
 
