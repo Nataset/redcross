@@ -28,6 +28,7 @@ class MailController extends Controller
         'land' => array('kZcxIW3GWe', 'BixiZBGw6L', 'Yz95mwFmr8', 'zxnNG40BwL')
     ];
 
+
     public function index($type, $id)
     {
         $img_path = $this->img_endpoint . $this->img_name[$type][$id - 1];
@@ -40,7 +41,7 @@ class MailController extends Controller
         ]);
     }
 
-    public function send(Request $req, $img_name)
+    public function send(Request $req)
     {
         $validator = Validator::make(
             $req->all(),
@@ -54,8 +55,8 @@ class MailController extends Controller
             [
                 'img-url.required' => 'กรุณาเลือกรูปภาพ',
                 'senderName.required' => 'กรุณากรอกชื่อของคุณ',
-                'body.required' => 'กรุณากรอกคำอวยพร',
-                'toEmail.required' => 'กรุณากรอกอีเมล',
+                'body.required' => 'กรุณากรอกเนื้อหา',
+                'toEmail.required' => 'กรุณากรอกอีเมลผู้รับ',
                 'toEmail.email' => 'รูปแบบอีเมลให้ถูกต้อง',
                 'receiveName.required' => 'กรุณากรอกชื่อผู้รับ',
             ]
@@ -72,7 +73,7 @@ class MailController extends Controller
         ];
 
         Mail::to($req->input('toEmail'))->send(new Postcard($details));
-        Log::info("Sender : " . $details['senderName'] . " , send email to : " . $details['toEmail'] . ", content : " . $details['body'] . ", with image : " . $img_name);
+        Log::info("Sender : " . $details['senderName'] . " , send email to : " . $details['toEmail'] . ", content : " . $details['body'] . ", with image : " .  $req->input('img-url'));
         return view('finish', [
             'toEmail' => $details['toEmail'],
             'receiveName' => $details['receiveName']
