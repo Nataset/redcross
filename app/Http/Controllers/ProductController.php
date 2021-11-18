@@ -35,7 +35,7 @@ class ProductController extends Controller
         // return redirect()->away($product->product_url);
     }
 
-    public function editUrl(Request $request , $id)
+    public function confirmEditProduct(Request $request , $id)
     {
         $product = Product::findOrFail( $id );
 
@@ -45,6 +45,13 @@ class ProductController extends Controller
 
         $product->save();
         return redirect()->intended(RouteServiceProvider::HOME)->with("message" , "edited");
+
+    }
+
+    public function editProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('edit', ['product' => $product]);
 
     }
 }
