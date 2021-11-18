@@ -35,23 +35,21 @@ class ProductController extends Controller
         // return redirect()->away($product->product_url);
     }
 
-    public function confirmEditProduct(Request $request , $id)
+    public function confirmEditProduct(Request $request, $id)
     {
-        $product = Product::findOrFail( $id );
+        $product = Product::findOrFail($id);
 
-        if($request->product_url !== null){
-            $product->product_url = $request->product_url;
-        }
+        $product->product_name = $request->input('product_name');
+        $product->product_url = $request->input('product_url');
+
 
         $product->save();
-        return redirect()->intended(RouteServiceProvider::HOME)->with("message" , "edited");
-
+        return redirect()->intended(RouteServiceProvider::HOME)->with("message", "edited");
     }
 
     public function editProduct($id)
     {
         $product = Product::findOrFail($id);
         return view('edit', ['product' => $product]);
-
     }
 }
