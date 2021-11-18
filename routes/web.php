@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,19 @@ use App\Http\Controllers\MailController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get(
     '/{type}/{id}',
     [MailController::class, 'index']
 );
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
 Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
