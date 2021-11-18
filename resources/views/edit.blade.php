@@ -6,10 +6,10 @@
     @csrf
     @method('PUT')
     <div>
-        <label for="name">Product name</label>
-        <input type="text" name="name"
+        <label for="name" >Product name</label>
+        <input type="text" name="product_name"
         autocomplete="off" placeholder="name"
-        value="{{$product->name}}">
+        value="{{$product->product_name}}">
         @error('name')
         <div style="color:red">
             {{ $message }}
@@ -18,9 +18,9 @@
     </div>
     <div>
         <label for="url">Product url</label>
-        <input type="text" name="url"
+        <input type="text" name="product_url"
         autocomplete="off" placeholder="url"
-        value="{{$product->url}}">
+        value="{{$product->product_url}}">
     </div>
     @error('url')
         <div style="color:red">
