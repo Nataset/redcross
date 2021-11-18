@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get(
 );
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
 Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
+
+Route::get('/dashboard/product/{id}' , [ProductController::class, 'product'])->name('product');
