@@ -29,6 +29,8 @@ class ProductController extends Controller
         $product->timestamps = $timestamps;
 
         return redirect()->away('https://www.google.com');
+
+        // uncomment for use product url to redirect to product's shop
         // return redirect()->away($product->product_url);
     }
 }
