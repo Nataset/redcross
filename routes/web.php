@@ -27,6 +27,7 @@ Route::get(
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
 Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
 
+Route::get('/dashboard/product/{id}' , [ProductController::class, 'product'])->name('product');
 Route::get('/edit/product/{id}' , [ProductController::class, 'editProduct'])->name('editProduct');
 Route::put('/edit/product/{id}', [ProductController::class, 'confirmEditProduct'])->name('confirmEditProduct');
 

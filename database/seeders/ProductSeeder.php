@@ -87,8 +87,31 @@ class ProductSeeder extends Seeder
         $product->product_name = "ผลิตภัณฑ์ขนมควบคุมน้ำหนักสุนัขเสริมใยอาหารจากผงไบโอไฟเบอร์ - สีส้ม : สูตร ฟักทอง กลิ่นนม";
         $product->product_url = "";
         $product->save();
+
         $product = new Product();
         $product->product_name = "ผลิตภัณฑ์ขนมควบคุมน้ำหนักสุนัขเสริมใยอาหารจากผงไบโอไฟเบอร์ - สีน ำเงิน : สูตร ผักเคล กลิ่นตับ";
+        $product->product_url = "";
+        $product->save();
+
+        $product = new Product();
+        $product->product_name = "โปรตีนเกษตร";
+        $product->product_url = "";
+        $product->save();
+
+        $product = new Product();
+        $product->product_name = "goody snax";
+        $product->product_url = "";
+        $product->save();
+        $product = new Product();
+        $product->product_name = "rice berry";
+        $product->product_url = "";
+        $product->save();
+        $product = new Product();
+        $product->product_name = "nu munchee";
+        $product->product_url = "";
+        $product->save();
+        $product = new Product();
+        $product->product_name = "goody snax brow rice snack";
         $product->product_url = "";
         $product->save();
     }

@@ -8,8 +8,8 @@
             @method('PUT')
             <div class="text-xl">
                 <label for="name">Product name : </label>
-                <input type="text" name="name" autocomplete="off" placeholder="name" class="rounded-lg"
-                    value="{{ old('name', $product->product_name) }}">
+                <input type="text" name="product_name" autocomplete="off" placeholder="name" class="rounded-lg"
+                    value="{{ old('product_name', $product->product_name) }}">
                 @error('name')
                     <div style="color:red">
                         {{ $message }}
@@ -18,8 +18,8 @@
             </div>
             <div class="text-xl">
                 <label for="url">Product url : </label>
-                <input type="text" name="url" autocomplete="off" placeholder="url" class="rounded-lg"
-                    value="{{ old('url', $product->product_url) }}">
+                <input type="text" name="product_url" autocomplete="off" placeholder="url" class="rounded-lg"
+                    value="{{ old('product_url', $product->product_url) }}">
             </div>
             @error('url')
                 <div style="color:red">
