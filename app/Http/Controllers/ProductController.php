@@ -15,19 +15,20 @@ class ProductController extends Controller
         return view('dashboard', ['products' => $product]);
     }
 
-    public function product($name)
+    public function product($id)
     {
-        $product = Product::findOrFail($name);
+        $product = Product::findOrFail($id);
 
         $timestamps = $product->timestamps;
 
-        $product->increment('amount');
+        $product->increment('click_amount');
 
         $product->timestamps = false;
 
         $product->save();
         $product->timestamps = $timestamps;
 
-        return Redirect::to('/dashbord/products/' . $name);
+        return redirect()->away('https://www.google.com');
+        // return redirect()->away($product->product_url);
     }
 }
