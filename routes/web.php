@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get(
@@ -27,7 +28,8 @@ Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
 Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $product = Product::get();
+    return view('dashboard', ['products' => $product]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

@@ -12,12 +12,12 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::get();
-        return Redirect::to('/dashboard/products');
+        return view('dashboard', ['products' => $product]);
     }
 
     public function product($name)
     {
-        $product = Product::findOrFail( $name );
+        $product = Product::findOrFail($name);
 
         $timestamps = $product->timestamps;
 
