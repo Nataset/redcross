@@ -15,6 +15,8 @@
     <meta property="og:image" content="http://35.198.217.27:8080/land/1" />
     <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="https://raw.githubusercontent.com/Nataset/redcross-pic/main/post_icon.png">
     <title>KUredcross</title>
     @yield('style')
 </head>
@@ -26,6 +28,7 @@
 </body>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;600&display=swap');
+
     body {
         margin-top: -20px !important;
         font-family: 'Prompt', sans-serif;
@@ -34,4 +37,3 @@
 </style>
 
 </html>
-
