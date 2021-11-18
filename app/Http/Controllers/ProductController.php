@@ -44,7 +44,7 @@ class ProductController extends Controller
 
 
         $product->save();
-        return redirect()->intended(RouteServiceProvider::HOME)->with("message", "edited");
+        return redirect()->intended(RouteServiceProvider::HOME)->with("message", "Edited product's details successfully!");
     }
 
     public function editProduct($id)
