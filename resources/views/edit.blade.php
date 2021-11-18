@@ -1,39 +1,36 @@
 @extends('layouts.main')
 @section('content')
-<fieldset>
-    <legend>Edit Product</legend>
-<form action="{{route('confirmEditProduct' , ['id' => $product->id] )}}" method="post">
-    @csrf
-    @method('PUT')
-    <div>
-        <label for="name">Product name</label>
-        <input type="text" name="name"
-        autocomplete="off" placeholder="name"
-        value="{{$product->name}}">
-        @error('name')
-        <div style="color:red">
-            {{ $message }}
-        </div>
-        @enderror
-    </div>
-    <div>
-        <label for="url">Product url</label>
-        <input type="text" name="url"
-        autocomplete="off" placeholder="url"
-        value="{{$product->url}}">
-    </div>
-    @error('url')
-        <div style="color:red">
-            {{ $message }}
-        </div>
-    @enderror
+    <fieldset class="m-20 border-2 pl-3 border-gray-600">
+        <legend class="text-3xl font-semibold"> Edit Product </legend>
+        <form action="{{ route('confirmEditProduct', ['id' => $product->id]) }}" method="post"
+            class="mx-auto px-6  space-y-6">
+            @csrf
+            @method('PUT')
+            <div class="text-xl">
+                <label for="name">Product name : </label>
+                <input type="text" name="name" autocomplete="off" placeholder="name" class="rounded-lg"
+                    value="{{ old('name', $product->product_name) }}">
+                @error('name')
+                    <div style="color:red">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="text-xl">
+                <label for="url">Product url : </label>
+                <input type="text" name="url" autocomplete="off" placeholder="url" class="rounded-lg"
+                    value="{{ old('url', $product->product_url) }}">
+            </div>
+            @error('url')
+                <div style="color:red">
+                    {{ $message }}
+                </div>
+            @enderror
 
-    <div>
-        <button type="submit">Edit Product</button>
-    </div>
-
-
-
-</form>
-</fieldset>
-@endsection
+            <div class="text-xl">
+                <button type="submit" onclick="return confirm('ยืนยันการเปลี่ยนแปลง')"
+                    class="bg-blue-500 mb-4  hover:bg-blue-700 text-white font-bold py-2 px-8 rounded "> Edit
+                    Product</button>
+            </div>
+        </form>
+</fieldset> @endsection
