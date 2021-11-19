@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -52,5 +53,27 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         return view('edit', ['product' => $product]);
+    }
+
+    public function add()
+    {
+        return view('add');
+    }
+
+    public function store(Request $req)
+    {
+        $validator = Validator::make($req->all(), [
+            'name' => 'required|string|min:3',
+            'url' => 'required|string',
+        ]);
+
+        $validator->validated();
+
+        $product = new Product;
+        $product->product_name = $req->input('name');
+        $product->product_url = $req->input('url');
+
+        $product->save();
+        return redirect()->to('/dashboard');
     }
 }

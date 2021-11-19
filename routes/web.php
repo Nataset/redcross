@@ -20,20 +20,23 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get(
-    '/{type}/{id}',
-    [MailController::class, 'index']
-);
 Route::post('/send-email', [MailController::class, 'send'])->name('send-email');
 Route::post('/tweet', [MailController::class, 'tweet'])->name('tweet');
 
-Route::get('/dashboard/product/{id}' , [ProductController::class, 'product'])->name('product');
-Route::get('/edit/product/{id}' , [ProductController::class, 'editProduct'])->name('editProduct');
+Route::get('/dashboard/product/{id}', [ProductController::class, 'product'])->name('product');
+Route::get('/edit/product/{id}', [ProductController::class, 'editProduct'])->name('editProduct');
 Route::put('/edit/product/{id}', [ProductController::class, 'confirmEditProduct'])->name('confirmEditProduct');
-
+// Route::get('/add/product/{id}', [ProductControoler::class, 'addProduct'])
+Route::get('/add/product', [ProductController::class, 'add'])->name('add');
+Route::post('/add/product', [ProductController::class, 'store'])->name("storeProduct");
 Route::get('/dashboard', function () {
     $product = Product::get();
     return view('dashboard', ['products' => $product]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
+Route::get(
+    '/{type}/{id}',
+    [MailController::class, 'index']
+);
