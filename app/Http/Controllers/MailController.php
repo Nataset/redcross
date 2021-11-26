@@ -57,7 +57,7 @@ class MailController extends Controller
                 'senderName.required' => 'กรุณากรอกชื่อของคุณ',
                 'body.required' => 'กรุณากรอกเนื้อหา',
                 'toEmail.required' => 'กรุณากรอกอีเมลผู้รับ',
-                'toEmail.email' => 'รูปแบบอีเมลให้ถูกต้อง',
+                'toEmail.email' => 'กรุณากรอกรูปแบบอีเมลให้ถูกต้อง',
                 'receiveName.required' => 'กรุณากรอกชื่อผู้รับ',
             ]
         );
